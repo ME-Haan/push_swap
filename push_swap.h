@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/03 16:56:56 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/06 17:25:11 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,15 @@
 # include <stdlib.h>
 # include <limits.h>
 
+// includes for testing !!!!
+#include	<stdio.h>
+
 // prototypes
-int	check_error(int argc, char **argv);
-int	ps_atoi(const char *str);
+int		check_error(int argc, char **argv);
+void	parse_arguments(int argc, char *argv[], t_list *list);
+// t_list	*parse_arguments(int argc, char *argv[]);
+
+// test functions
+void	print_list(t_list *list);
 
 #endif

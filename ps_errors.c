@@ -6,30 +6,27 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 14:25:09 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/06 12:15:27 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/06 13:47:03 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
-#include	<limits.h>
-
-#include <stdio.h>
 
 static int	check_int(char *str);
 static int	check_limits(const char *str);
-static int	check_dups(int argc, char *argv[]);
+static int	check_dups(int argc, char *argv[], int i);
 
 int	check_error(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
-	while (argv[i])
+	while (i < argc)
 	{
 		check_int(argv[i]);
+		check_dups(argc, argv, i);
 		i++;
 	}
-	check_dups(argc, argv);
 	return (write(1, "OK\n", 3), 0);
 }
 
@@ -75,19 +72,17 @@ static int	check_limits(const char *str)
 	return (0);
 }
 
-static int	check_dups(int argc, char *argv[])
+static int	check_dups(int argc, char *argv[], int i)
 {
 	int	arg1;
 	int	arg2;
-	int	i;
 	int	j;
 
-	i = 0;
-	while (++i < argc)
+	while (i < argc)
 	{
 		arg1 = ft_atoi(argv[i]);
-		j = i;
-		while (++j < argc)
+		j = i + 1;
+		while (j < argc)
 		{
 			arg2 = ft_atoi(argv[j]);
 			if (arg1 == arg2)
@@ -95,7 +90,9 @@ static int	check_dups(int argc, char *argv[])
 				write(STDERR_FILENO, "Error\n", 6);
 				exit (EXIT_FAILURE);
 			}
+			j++;
 		}
+		i++;
 	}
 	return (0);
 }

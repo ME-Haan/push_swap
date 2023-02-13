@@ -6,12 +6,11 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/06 13:34:18 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/13 11:51:17 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/13 12:08:24 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
-
 
 t_stack	*parse_arguments(int argc, char **argv)
 {

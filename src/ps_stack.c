@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 09:29:44 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/13 11:19:07 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/13 12:08:08 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,3 @@ void	ps_stackclear(t_stack **stack)
 		*stack = tmp;
 	}
 }
-

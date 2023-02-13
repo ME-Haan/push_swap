@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/13 11:21:52 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/13 16:21:12 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	main(int argc, char *argv[])
 
 	// 4. Free the list
 	ps_stackclear(&stack_a);
-	// system("leaks a.out");
+	system("leaks push_swap");
 }

@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/06 17:25:40 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/13 11:21:52 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 int	main(int argc, char *argv[])
 {
-	t_list	*list;
+	t_stack	*stack_a;
 
-	list = NULL;
 	// 1. Error handling.
 	check_error(argc, argv);
+
 	// 2. Parsing arguments into linked list.
-	// list = parse_arguments(argc, argv);
-	parse_arguments(argc, argv, list);
+	stack_a = parse_arguments(argc, argv);
+
+	// **Testing by printing the contents of the list **
+	print_stack(stack_a);
+
 	/*3. Sorting stack from smalles to biggest integer.
 			a. Check if the list is sorted. If so, exit. Else continue.
 			b. Check which instruction should be used next.
 			c. Print instruction, followed by a newline.
 	*/
 
-	// **Testing by printing the contents of the list **
-	// printf("Test: %i\n", *(int *)list->content);
-	print_list(list);
 	// 4. Free the list
-	// ft_lstclear(list, del);
+	ps_stackclear(&stack_a);
+	// system("leaks a.out");
 }

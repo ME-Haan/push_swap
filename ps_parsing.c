@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ps_operations.c                                    :+:    :+:            */
+/*   ps_parsing.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/01/31 14:23:27 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/13 10:46:44 by mhaan         ########   odam.nl         */
+/*   Created: 2023/02/06 13:34:18 by mhaan         #+#    #+#                 */
+/*   Updated: 2023/02/13 11:51:17 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
 
-/*
-void	swap(t_stack a, t_stack b, char target)
-{
 
+t_stack	*parse_arguments(int argc, char **argv)
+{
+	int		i;
+	int		num;
+	t_stack	*node;
+	t_stack	*stack;
+
+	i = 1;
+	stack = NULL;
+	while (i < argc)
+	{
+		num = ft_atoi(argv[i]);
+		node = ps_stacknew(num);
+		ps_stackadd_back(&stack, node);
+		i++;
+	}
+	return (stack);
 }
 
-void	push(t_stack a, t_stack b, char target)
+void	print_stack(t_stack *stack)
 {
-
+	while (stack)
+	{
+		printf("%i\n", stack->num);
+		stack = stack->next;
+	}
 }
-
-void	rotate(t_stack a, t_stack b, char target)
-{
-
-}
-
-void	rev_rotate(t_stack a, t_stack b, char target)
-{
-
-}
-*/

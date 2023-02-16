@@ -6,18 +6,20 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/30 16:06:53 by mhaan         #+#    #+#                  #
-#    Updated: 2023/02/16 12:16:26 by mhaan         ########   odam.nl          #
+#    Updated: 2023/02/16 12:20:31 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
+#GENERAL VARIABLES
 NAME=push_swap
+RM=/bin/rm -rf
 
+#COMPILATION VARIABLES
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 AR=ar -crs
-RM=/bin/rm -rf
 
-# DIRS AND FILES
+#DIRS AND FILES
 INC_DIR=./includes ./libft
 INCLUDES=$(foreach D,$(INC_DIR),-I$(D))
 
@@ -27,12 +29,11 @@ SRC=$(foreach D,$(SRC_DIR),$(wildcard $(D)/*.c))
 OBJ_DIR=./obj
 OBJS=$(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
 
-# LIBS:
+#DEPENDENCY LIBS:
 LIBFT_DIR=./libft
 LIBFT_AR=$(LIBFT_DIR)/libft.a
 
-
-# RECIPES:
+#RECIPES:
 all: $(NAME)
 
 clean:
@@ -47,8 +48,7 @@ re:
 		$(MAKE) fclean
 		$(MAKE) all
 
-
-# RULES:
+#RULES:
 $(NAME): $(LIBFT_AR) $(OBJ_DIR) $(OBJS)
 		$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_AR) $(OBJS) -o $(NAME)
 
@@ -62,6 +62,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $@
 
 
-# OTHER:
+#OTHER:
 .PHONY:
 		all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/06 13:34:18 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/13 12:08:24 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/16 12:40:38 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,9 @@ t_stack	*parse_arguments(int argc, char **argv)
 	while (i < argc)
 	{
 		num = ft_atoi(argv[i]);
-		node = ps_stacknew(num);
+		node = ps_stacknew(num, i - 1);
 		ps_stackadd_back(&stack, node);
 		i++;
 	}
 	return (stack);
-}
-
-void	print_stack(t_stack *stack)
-{
-	while (stack)
-	{
-		printf("%i\n", stack->num);
-		stack = stack->next;
-	}
 }

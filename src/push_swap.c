@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/13 16:21:12 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/16 10:20:00 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 
+	stack_b = NULL;
 	// 1. Error handling.
 	check_error(argc, argv);
 

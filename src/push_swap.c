@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/17 14:02:54 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/17 15:57:10 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int argc, char *argv[])
 
 	// **Testing the operations**
 	// stack_b = parse_arguments(argc, argv);
-	ops_switch(&stack_a, &stack_b, "pb");
+	// ops_switch(&stack_a, &stack_b, "pb");
+	ps_radix_sort(&stack_a, &stack_b, argc - 1);
 
 	// **Testing by printing the contents of the list **
 	printf("Stack A:\n");
@@ -54,5 +55,5 @@ void	print_stack(t_stack *stack)
 		printf("Num: %i\n", stack->num);
 		stack = stack->next;
 	}
-	printf("--------\n");
+	printf("----------------\n");
 }

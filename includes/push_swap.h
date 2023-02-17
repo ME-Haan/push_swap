@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/16 15:19:40 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/17 11:38:40 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	ps_stackadd_back(t_stack **stack, t_stack *new);
 void	ps_stackclear(t_stack **stack);
 
 // operation functions
+void	ops_switch(t_stack **stack_a, t_stack **stack_b, char *op);
 void	ps_swap(t_stack **stack);
 void	ps_push(t_stack **stack1, t_stack **stack2);
+void	ps_rotate(t_stack **stack);
+void	ps_rev_rotate(t_stack **stack);
 
 // test functions
 void	print_stack(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 14:25:09 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/16 15:07:52 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/17 14:10:42 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,36 @@ int	check_error(int argc, char **argv)
 	int	i;
 
 	i = 1;
+	if (argc < 2)
+		exit (EXIT_FAILURE);
 	while (i < argc)
 	{
 		check_int(argv[i]);
 		check_dups(argc, argv, i);
 		i++;
 	}
-	return (write(1, "OK\n", 3), 0);
+	if (argc == 2)
+		exit (EXIT_SUCCESS);
+	return (0);
 }
 
 static int	check_int(char *str)
 {
-	check_limits(str);
-	if (*str == '-' && *(str + 1))
-		str++;
-	while (*str)
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' && str[i + 1])
+		i++;
+	while (str[i])
 	{
-		if (!ft_isdigit(*str))
+		if (!ft_isdigit(str[i]))
 		{
 			write(STDERR_FILENO, "Error\n", 6);
 			exit (EXIT_FAILURE);
 		}
-		str++;
+		i++;
 	}
+	check_limits(str);
 	return (0);
 }
 

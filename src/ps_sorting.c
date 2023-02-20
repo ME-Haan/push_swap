@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 13:52:20 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/17 16:37:31 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/20 15:05:14 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,56 @@
 
 static int	get_max(t_stack *stack);
 static int	num_len(int num);
+static int	ps_is_sorted(t_stack *stack);
 
-void	ps_radix_sort(t_stack **stack_a, t_stack **stack_b, int stacklen)
+void	simple_sort(t_stack **stack_a, int stacklen)
 {
+	t_stack	*stack_b;
+	t_stack	*last_a;
+	int		count;
+
+	stack_b = NULL;
+	count = 0;
+	while (ps_stacklen(*stack_a) < stacklen || !ps_is_sorted(*stack_a))
+	{
+		last_a = ps_stacklast(*stack_a);
+		if ((*stack_a)->num > (*stack_a)->next->num)
+			ops_switch(stack_a, &stack_b, "sa");
+		else if ((*stack_a)->num > last_a->num)
+			ops_switch(stack_a, &stack_b, "rra");
+		else if (!ps_is_sorted(*stack_a))
+			ops_switch(stack_a, &stack_b, "pb");
+		else if (ps_is_sorted(*stack_a) && ps_stacklen(*stack_a) != stacklen)
+			ops_switch(stack_a, &stack_b, "pa");
+		print_stack(*stack_a);
+		print_stack(stack_b);
+		count++;
+	}
+	printf("Operations performed: %i\n", count);
+}
+
+void	ps_radix_sort(t_stack **stack_a, int stacklen)
+{
+	t_stack		*stack_b;
 	const int	max = get_max(*stack_a);
 	const int	maxlen = num_len(max);
 
-	(void)*stack_b;
+	(void)stack_b;
 	printf("Max:%i\n", max);
 	printf("Maxlen:%i\n", maxlen);
 	printf("Stacklen:%i\n", stacklen);
 	printf("---------------\n");
+}
 
-	
-
+static int	ps_is_sorted(t_stack *stack)
+{
+	while (stack->next)
+	{
+		if (stack->num > stack->next->num)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
 
 static int	get_max(t_stack *stack)

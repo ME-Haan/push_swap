@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 09:29:44 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/16 12:41:00 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/20 14:05:42 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_stack	*ps_stacklast(t_stack *stack)
 
 	tmp = stack;
 	if (!tmp)
-		return (0);
+		return (NULL);
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
@@ -64,4 +64,17 @@ void	ps_stackclear(t_stack **stack)
 		free(*stack);
 		*stack = tmp;
 	}
+}
+
+int	ps_stacklen(t_stack *stack)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		count++;
+		stack = stack->next;
+	}
+	return (count);
 }

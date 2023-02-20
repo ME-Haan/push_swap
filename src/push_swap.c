@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/20 14:52:08 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/20 16:02:28 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int argc, char *argv[])
 	// ops_switch(&stack_a, &stack_b, "rra");
 
 	// **Testing by printing the contents of the list **
-	printf("Stack A:\n");
-	print_stack(stack_a);
+	// printf("Stack A:\n");
+	// print_stack(stack_a);
 	// printf("Stack B:\n");
 	// print_stack(stack_b);
 
@@ -55,7 +55,7 @@ void	print_stack(t_stack *stack)
 	while (stack)
 	{
 		// printf("Index:%i, ", stack->index);
-		printf("Num: %i\n", stack->num);
+		printf("%i\n", stack->num);
 		stack = stack->next;
 	}
 	printf("----------------\n");

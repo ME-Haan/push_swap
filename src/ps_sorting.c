@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 13:52:20 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/20 15:05:14 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/20 16:21:52 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	simple_sort(t_stack **stack_a, int stacklen)
 	while (ps_stacklen(*stack_a) < stacklen || !ps_is_sorted(*stack_a))
 	{
 		last_a = ps_stacklast(*stack_a);
+		printf("****************\n");
 		if ((*stack_a)->num > (*stack_a)->next->num)
 			ops_switch(stack_a, &stack_b, "sa");
 		else if ((*stack_a)->num > last_a->num)
@@ -35,8 +36,12 @@ void	simple_sort(t_stack **stack_a, int stacklen)
 			ops_switch(stack_a, &stack_b, "pb");
 		else if (ps_is_sorted(*stack_a) && ps_stacklen(*stack_a) != stacklen)
 			ops_switch(stack_a, &stack_b, "pa");
+		printf("----------------\n");
+		printf("Stack A:\n");
 		print_stack(*stack_a);
+		printf("Stack B:\n");
 		print_stack(stack_b);
+		printf("****************\n\n");
 		count++;
 	}
 	printf("Operations performed: %i\n", count);

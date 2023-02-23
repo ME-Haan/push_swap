@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/20 11:52:32 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/23 13:41:44 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		check_error(int argc, char **argv);
 t_stack	*parse_arguments(int argc, char **argv);
 
 // stack functions:
-t_stack	*ps_stacknew(int num, int i);
+t_stack	*ps_stacknew(int num);
 t_stack	*ps_stacklast(t_stack *stack);
 void	ps_stackadd_back(t_stack **stack, t_stack *new);
 void	ps_stackclear(t_stack **stack);
@@ -55,5 +55,6 @@ void	ps_rev_rotate(t_stack **stack);
 
 // test functions:
 void	print_stack(t_stack *stack);
+void	test_print(t_stack *stack_a, t_stack *stack_b);
 
 #endif

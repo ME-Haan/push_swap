@@ -6,15 +6,15 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 13:52:20 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/20 16:21:52 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/23 15:31:09 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
 
-static int	get_max(t_stack *stack);
-static int	num_len(int num);
-static int	ps_is_sorted(t_stack *stack);
+static unsigned int	get_max_idx(t_stack *stack);
+static unsigned int	get_bitlen(unsigned int num);
+static int			ps_is_sorted(t_stack *stack);
 
 void	simple_sort(t_stack **stack_a, int stacklen)
 {
@@ -27,75 +27,88 @@ void	simple_sort(t_stack **stack_a, int stacklen)
 	while (ps_stacklen(*stack_a) < stacklen || !ps_is_sorted(*stack_a))
 	{
 		last_a = ps_stacklast(*stack_a);
-		printf("****************\n");
-		if ((*stack_a)->num > (*stack_a)->next->num)
+		if ((*stack_a)->index > (*stack_a)->next->index)
 			ops_switch(stack_a, &stack_b, "sa");
-		else if ((*stack_a)->num > last_a->num)
+		else if ((*stack_a)->index > last_a->index)
 			ops_switch(stack_a, &stack_b, "rra");
 		else if (!ps_is_sorted(*stack_a))
 			ops_switch(stack_a, &stack_b, "pb");
 		else if (ps_is_sorted(*stack_a) && ps_stacklen(*stack_a) != stacklen)
 			ops_switch(stack_a, &stack_b, "pa");
-		printf("----------------\n");
-		printf("Stack A:\n");
-		print_stack(*stack_a);
-		printf("Stack B:\n");
-		print_stack(stack_b);
-		printf("****************\n\n");
+		test_print(*stack_a, stack_b);
 		count++;
 	}
+	printf("Max bitlen: %i\n", get_bitlen(get_max_idx(*stack_a)));
 	printf("Operations performed: %i\n", count);
 }
 
 void	ps_radix_sort(t_stack **stack_a, int stacklen)
 {
-	t_stack		*stack_b;
-	const int	max = get_max(*stack_a);
-	const int	maxlen = num_len(max);
+	t_stack				*stack_a_ptr;
+	t_stack				*stack_b;
+	const unsigned int	max = get_max_idx(*stack_a);
+	const unsigned		bitlen = get_bitlen(max);
+	unsigned int		i;
 
-	(void)stack_b;
-	printf("Max:%i\n", max);
-	printf("Maxlen:%i\n", maxlen);
+	printf("Max index:%i\n", max);
+	printf("Max bitlen:%i\n", bitlen);
 	printf("Stacklen:%i\n", stacklen);
 	printf("---------------\n");
+
+	stack_b = NULL;
+	i = 0;
+	while (i < bitlen || !ps_is_sorted(*stack_a))
+	{
+		stack_a_ptr = *stack_a;
+		while (stack_a_ptr)
+		{
+			if ((stack_a_ptr->index >> i ) & 1)
+				ops_switch(stack_a, &stack_b, "ra");
+			else
+				ops_switch(stack_a, &stack_b, "pb");
+			stack_a_ptr = stack_a_ptr->next;
+		}
+		while (stack_b)
+			ops_switch(stack_a, &stack_b, "pa");
+		i++;
+	}
 }
 
 static int	ps_is_sorted(t_stack *stack)
 {
 	while (stack->next)
 	{
-		if (stack->num > stack->next->num)
+		if (stack->index > stack->next->index)
 			return (0);
 		stack = stack->next;
 	}
 	return (1);
 }
 
-static int	get_max(t_stack *stack)
+static unsigned int	get_max_idx(t_stack *stack)
 {
-	int	max;
+	unsigned int	max;
 
-	max = stack->num;
+	max = stack->index;
 	stack = stack->next;
 	while (stack)
 	{
-		if (stack->num > max)
-			max = stack->num;
+		if (stack->index > max)
+			max = stack->index;
 		stack = stack->next;
 	}
 	return (max);
 }
 
-static int	num_len(int num)
+static unsigned int	get_bitlen(unsigned int num)
 {
-	int	count;
+	unsigned int	count;
 
 	count = 1;
-	num /= 10;
-	while (num)
+	while (num != 0 && num != 1)
 	{
 		count++;
-		num /= 10;
+		num /= 2;
 	}
 	return (count);
 }

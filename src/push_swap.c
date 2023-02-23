@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/20 16:02:28 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/23 15:27:40 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	main(int argc, char *argv[])
 
 	// *3. Sorting stack from smalles to biggest integer.
 	// 	a. Check if the list is sorted. If so, exit. Else continue.
-	simple_sort(&stack_a, argc - 1);
+	// simple_sort(&stack_a, argc - 1);
+	ps_radix_sort(&stack_a, argc - 1);
 	// 	b. Check which instruction should be used next.
 	// 	c. Print instruction, followed by a newline.
 	// ps_radix_sort(&stack_a, &stack_b, argc - 1);
@@ -48,15 +49,4 @@ int	main(int argc, char *argv[])
 
 	// Test leaks:
 	// system("leaks push_swap");
-}
-
-void	print_stack(t_stack *stack)
-{
-	while (stack)
-	{
-		// printf("Index:%i, ", stack->index);
-		printf("%i\n", stack->num);
-		stack = stack->next;
-	}
-	printf("----------------\n");
 }

@@ -6,13 +6,13 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 09:29:44 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/20 15:25:31 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/23 12:15:47 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
 
-t_stack	*ps_stacknew(int num, int i)
+t_stack	*ps_stacknew(int num)
 {
 	t_stack	*stack;
 
@@ -20,7 +20,7 @@ t_stack	*ps_stacknew(int num, int i)
 	if (!stack)
 		return (NULL);
 	stack->num = num;
-	stack->index = i;
+	stack->index = 0;
 	stack->next = NULL;
 	return (stack);
 }

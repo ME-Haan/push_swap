@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/23 13:40:07 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/23 13:41:16 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/24 16:51:34 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	print_stack(t_stack *stack)
 
 void	test_print(t_stack *stack_a, t_stack *stack_b)
 {
+	(void)stack_a;
 	printf("----------------\n");
 	printf("Stack A:\n");
 	print_stack(stack_a);

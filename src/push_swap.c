@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 12:30:02 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/24 16:50:43 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/27 16:15:30 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ int	main(int argc, char *argv[])
 	stack_a = parse_arguments(argc, argv);
 
 	// *3. Sorting stack from smalles to biggest integer.
-	// if (argc <= 6 )
-	// 	simple_sort(&stack_a);
-	// else
-		ps_radix_sort(&stack_a, argc - 1);
+	if (argc <= 6 )
+		simple_sort(&stack_a);
+	else
+		ps_radix_sort(&stack_a);
 
 	// 4. Free the list
 	ps_stackclear(&stack_a);
 
 	// Test leaks:
 	// system("leaks push_swap");
+	return (0);
 }

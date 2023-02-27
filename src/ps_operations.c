@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 14:23:27 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/24 13:45:38 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/27 17:09:58 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ void	ops_switch(t_stack **stack_a, t_stack **stack_b, char *op)
 	if (!ft_strncmp("rrb", op, 3) || !ft_strncmp("rrr", op, 3))
 		ps_rev_rotate(stack_b);
 	// TO DO: Import ft_printf!!!!
-	printf("****************\nOperation: %s\n", op);
+	printf("%s\n", op);
 }

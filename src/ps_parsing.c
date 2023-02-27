@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/06 13:34:18 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/24 11:48:46 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/02/27 15:13:57 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,4 @@ static void	update_index(t_stack **stack)
 		}
 		ptr1 = ptr1->next;
 	}
-	print_stack(*stack);
 }

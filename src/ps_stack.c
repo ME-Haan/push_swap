@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 09:29:44 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/23 12:15:47 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/02 11:50:15 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	ps_stackclear(t_stack **stack)
 	}
 }
 
-int	ps_stacklen(t_stack *stack)
+unsigned int	ps_stacklen(t_stack *stack)
 {
-	int	count;
+	unsigned int	count;
 
 	count = 0;
 	while (stack)

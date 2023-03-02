@@ -6,11 +6,33 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 14:23:27 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/02/27 17:09:58 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/02 12:13:56 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
+
+void	ops_switch(t_stack **stack_a, t_stack **stack_b, char *op)
+{
+	if (!ft_strncmp("sa", op, 2) || !ft_strncmp("ss", op, 2))
+		ps_swap(stack_a);
+	if (!ft_strncmp("sb", op, 2) || !ft_strncmp("ss", op, 2))
+		ps_swap(stack_b);
+	if (!ft_strncmp("pa", op, 2))
+		ps_push(stack_a, stack_b);
+	if (!ft_strncmp("pb", op, 2))
+		ps_push(stack_b, stack_a);
+	if (!ft_strncmp("ra", op, 3) || !ft_strncmp("rr", op, 3))
+		ps_rotate(stack_a);
+	if (!ft_strncmp("rb", op, 3) || !ft_strncmp("rr", op, 3))
+		ps_rotate(stack_b);
+	if (!ft_strncmp("rra", op, 3) || !ft_strncmp("rrr", op, 3))
+		ps_rev_rotate(stack_a);
+	if (!ft_strncmp("rrb", op, 3) || !ft_strncmp("rrr", op, 3))
+		ps_rev_rotate(stack_b);
+	write(1, op, ft_strlen(op));
+	write(1, "\n", 1);
+}
 
 void	ps_swap(t_stack **stack)
 {
@@ -68,26 +90,4 @@ void	ps_rev_rotate(t_stack **stack)
 		new_last->next = NULL;
 		*stack = new_head;
 	}
-}
-
-void	ops_switch(t_stack **stack_a, t_stack **stack_b, char *op)
-{
-	if (!ft_strncmp("sa", op, 2) || !ft_strncmp("ss", op, 2))
-		ps_swap(stack_a);
-	if (!ft_strncmp("sb", op, 2) || !ft_strncmp("ss", op, 2))
-		ps_swap(stack_b);
-	if (!ft_strncmp("pa", op, 2))
-		ps_push(stack_a, stack_b);
-	if (!ft_strncmp("pb", op, 2))
-		ps_push(stack_b, stack_a);
-	if (!ft_strncmp("ra", op, 3) || !ft_strncmp("rr", op, 3))
-		ps_rotate(stack_a);
-	if (!ft_strncmp("rb", op, 3) || !ft_strncmp("rr", op, 3))
-		ps_rotate(stack_b);
-	if (!ft_strncmp("rra", op, 3) || !ft_strncmp("rrr", op, 3))
-		ps_rev_rotate(stack_a);
-	if (!ft_strncmp("rrb", op, 3) || !ft_strncmp("rrr", op, 3))
-		ps_rev_rotate(stack_b);
-	// TO DO: Import ft_printf!!!!
-	printf("%s\n", op);
 }

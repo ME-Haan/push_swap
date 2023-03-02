@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/30 16:06:53 by mhaan         #+#    #+#                  #
-#    Updated: 2023/02/24 15:31:16 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/02 10:28:23 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ INC_DIR=./includes ./libft
 INCLUDES=$(foreach D,$(INC_DIR),-I$(D))
 
 SRC_DIR=./src
-SRC=ps_errors.c ps_operations.c ps_parsing.c ps_sorting.c ps_stack.c push_swap.c test_utils.c
+SRC=ps_errors.c ps_operations.c ps_parsing.c ps_sorting.c ps_stack.c push_swap.c
 
 OBJ_DIR=./obj
 OBJS=$(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))

@@ -6,21 +6,21 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/02 12:13:05 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/03 17:09:51 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-// includes:
+// Includes:
 # include <libft.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-// structs:
+// Structs:
 typedef struct s_stack
 {
 	int				num;
@@ -28,22 +28,22 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-// parsing functions:
+// Parsing functions:
 int				check_error(int argc, char **argv);
 t_stack			*parse_arguments(int argc, char **argv);
 
-// stack functions:
+// Stack functions:
 t_stack			*ps_stacknew(int num);
 t_stack			*ps_stacklast(t_stack *stack);
 void			ps_stackadd_back(t_stack **stack, t_stack *new);
 void			ps_stackclear(t_stack **stack);
 unsigned int	ps_stacklen(t_stack *stack);
 
-// sorting:
+// Sorting functions:
 void			simple_sort(t_stack **stack_a);
 void			ps_radix_sort(t_stack **stack_a);
 
-// operation functions:
+// Operation functions:
 void			ops_switch(t_stack **stack_a, t_stack **stack_b, char *op);
 void			ps_swap(t_stack **stack);
 void			ps_push(t_stack **stack1, t_stack **stack2);

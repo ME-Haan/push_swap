@@ -6,14 +6,11 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 13:52:20 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/02 12:08:50 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/03 10:22:57 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
-
-// static unsigned int	get_max_idx(t_stack *stack);
-// static unsigned int	get_bitlen(unsigned int num);
 
 static int	is_revsorted(t_stack *stack);
 static int	is_sorted(t_stack *stack);
@@ -107,31 +104,3 @@ static int	is_revsorted(t_stack *stack)
 	}
 	return (1);
 }
-
-// static unsigned int	get_max_idx(t_stack *stack)
-// {
-// 	unsigned int	max;
-
-// 	max = stack->index;
-// 	stack = stack->next;
-// 	while (stack)
-// 	{
-// 		if (stack->index > max)
-// 			max = stack->index;
-// 		stack = stack->next;
-// 	}
-// 	return (max);
-// }
-
-// static unsigned int	get_bitlen(unsigned int num)
-// {
-// 	unsigned int	count;
-
-// 	count = 1;
-// 	while (num != 0 && num != 1)
-// 	{
-// 		count++;
-// 		num /= 2;
-// 	}
-// 	return (count);
-// }

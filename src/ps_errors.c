@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 14:25:09 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/06 11:03:10 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/06 14:13:38 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static int	check_int(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-' && str[i + 1])
+	if ((str[i] == '+' || str[i] == '-') && str[i + 1])
 		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
 		{
-			write(STDERR_FILENO, "Error, input contains value(s) that is not a number.\n", 53);
+			write(STDERR_FILENO, "Error\n", 6);
 			exit (EXIT_FAILURE);
 		}
 		i++;
@@ -73,7 +73,7 @@ static int	check_limits(const char *str)
 		return (0);
 	else if (val < 0 || val > INT_MAX)
 	{
-		write(STDERR_FILENO, "Error, input contains number(s) exceeding INT limits.\n", 54);
+		write(STDERR_FILENO, "Error\n", 6);
 		exit (EXIT_FAILURE);
 	}
 	return (0);
@@ -94,7 +94,7 @@ static int	check_dups(int argc, char *argv[], int i)
 			arg2 = ft_atoi(argv[j]);
 			if (arg1 == arg2)
 			{
-				write(STDERR_FILENO, "Error, input contains duplicate number(s).\n", 43);
+				write(STDERR_FILENO, "Error\n", 6);
 				exit (EXIT_FAILURE);
 			}
 			j++;

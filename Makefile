@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/30 16:06:53 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/03 17:42:14 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/06 10:40:21 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ $(LIBFT_AR):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
-
 
 #OTHER:
 .PHONY:

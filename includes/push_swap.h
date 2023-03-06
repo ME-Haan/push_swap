@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/03 17:09:51 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/06 17:23:41 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void			ps_stackclear(t_stack **stack);
 unsigned int	ps_stacklen(t_stack *stack);
 
 // Sorting functions:
-void			simple_sort(t_stack **stack_a);
+int				is_sorted(t_stack *stack);
+// void			simple_sort(t_stack **stack_a);
+void			ps_short_sort(t_stack **stack_a);
 void			ps_radix_sort(t_stack **stack_a);
 
 // Operation functions:

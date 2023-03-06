@@ -6,7 +6,7 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/30 16:06:53 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/06 10:40:21 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/06 17:53:09 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ INCLUDES := $(foreach D,$(INC_DIRS),-I$(D))
 INC_FILES := ./includes/push_swap.h ./libft/libft.h
 
 SRC_DIR := ./src
-SRC := ps_errors.c ps_operations.c ps_parsing.c ps_sorting.c ps_stack.c push_swap.c
+SRC := ps_errors.c ps_operations.c ps_parsing.c ps_radix.c ps_stack.c push_swap.c ps_shortsort.c
 
 OBJ_DIR := ./obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
@@ -42,7 +42,7 @@ fclean: clean
 
 clean:
 		$(RM) $(OBJ_DIR)
-		@$(MAKE) clean -C libft
+		@$(MAKE) clean -C $(LIBFT_DIR) -j
 
 re:
 		@$(MAKE) fclean
@@ -53,7 +53,7 @@ $(NAME): $(OBJS) $(LIBFT_AR)
 		$(CC) $(CFLAGS) -o $@ $^
 
 $(LIBFT_AR):
-		@$(MAKE) -C libft
+		@$(MAKE) -C $(LIBFT_DIR) -j
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(OBJ_DIR)

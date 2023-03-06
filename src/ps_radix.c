@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ps_sorting.c                                       :+:    :+:            */
+/*   ps_radix.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 13:52:20 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/03 10:22:57 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/06 17:53:26 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
 
 static int	is_revsorted(t_stack *stack);
-static int	is_sorted(t_stack *stack);
 static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, unsigned int i);
-
-void	simple_sort(t_stack **stack_a)
-{
-	t_stack	*stack_b;
-	t_stack	*last_a;
-
-	stack_b = NULL;
-	while (stack_b || !is_sorted(*stack_a))
-	{
-		last_a = ps_stacklast(*stack_a);
-		if ((*stack_a)->index > (*stack_a)->next->index)
-			ops_switch(stack_a, &stack_b, "sa");
-		else if ((*stack_a)->index > last_a->index)
-			ops_switch(stack_a, &stack_b, "rra");
-		else if (!is_sorted(*stack_a))
-			ops_switch(stack_a, &stack_b, "pb");
-		else if (is_sorted(*stack_a) && stack_b)
-			ops_switch(stack_a, &stack_b, "pa");
-	}
-}
 
 void	ps_radix_sort(t_stack **stack_a)
 {
@@ -79,7 +58,7 @@ static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, unsigned int i)
 	}
 }
 
-static int	is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	if (!stack)
 		return (0);

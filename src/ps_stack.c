@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 09:29:44 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/02 11:50:15 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/07 15:48:13 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	*ps_stacknew(int num)
 	if (!stack)
 		return (NULL);
 	stack->num = num;
-	stack->index = 0;
+	stack->idx = 0;
 	stack->next = NULL;
 	return (stack);
 }

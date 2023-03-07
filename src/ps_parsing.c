@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/06 13:34:18 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/03 10:03:46 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/07 15:46:10 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	update_index(t_stack **stack)
 		while (ptr2)
 		{
 			if (ptr1->num > ptr2->num)
-				ptr1->index++;
+				ptr1->idx++;
 			else
-				ptr2->index++;
+				ptr2->idx++;
 			ptr2 = ptr2->next;
 		}
 		ptr1 = ptr1->next;

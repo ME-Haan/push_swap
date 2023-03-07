@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/06 17:23:41 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/07 15:51:57 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct s_stack
 {
 	int				num;
-	unsigned int	index;
+	unsigned int	idx;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -40,16 +40,11 @@ void			ps_stackclear(t_stack **stack);
 unsigned int	ps_stacklen(t_stack *stack);
 
 // Sorting functions:
-int				is_sorted(t_stack *stack);
-// void			simple_sort(t_stack **stack_a);
 void			ps_short_sort(t_stack **stack_a);
 void			ps_radix_sort(t_stack **stack_a);
+int				is_sorted(t_stack *stack);
 
 // Operation functions:
 void			ops_switch(t_stack **stack_a, t_stack **stack_b, char *op);
-void			ps_swap(t_stack **stack);
-void			ps_push(t_stack **stack1, t_stack **stack2);
-void			ps_rotate(t_stack **stack);
-void			ps_rev_rotate(t_stack **stack);
 
 #endif

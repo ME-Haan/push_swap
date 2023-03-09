@@ -6,12 +6,13 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/30 16:06:53 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/06 17:53:09 by mhaan         ########   odam.nl          #
+#    Updated: 2023/03/09 14:17:58 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 #GENERAL VARIABLES
 NAME := push_swap
+BONUS := checker_bonus
 RM := /bin/rm -rf
 
 #COMPILATION VARIABLES
@@ -21,13 +22,23 @@ AR := ar -crs
 #DIRS AND FILES
 INC_DIRS := ./includes ./libft
 INCLUDES := $(foreach D,$(INC_DIRS),-I$(D))
-INC_FILES := ./includes/push_swap.h ./libft/libft.h
+INC_FILES := ./includes/push_swap.h ./includes/checker_bonus.h
 
-SRC_DIR := ./src
-SRC := ps_errors.c ps_operations.c ps_parsing.c ps_radix.c ps_stack.c push_swap.c ps_shortsort.c
+SRC_DIR :=		./src
+SRC :=			ps_errors.c \
+				ps_operations.c \
+				ps_parsing.c \
+				ps_radix.c \
+				ps_stack.c \
+				push_swap.c \
+				ps_shortsort.c
 
 OBJ_DIR := ./obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
+
+BONUS_DIR :=	$(SRC_DIR)/checker_bonus
+SRC_BONUS :=	checker_bonus.c
+BONUS_OBJS :=	$(addprefix $(OBJ_DIR)/,$(notdir $(SRC_BONUS:.c=.o)))
 
 #DEPENDENCIES:
 LIBFT_DIR := ./libft
@@ -36,21 +47,26 @@ LIBFT_AR := $(LIBFT_DIR)/libft.a
 #RECIPES:
 all:	$(NAME)
 
-fclean: clean
-		$(RM) $(NAME)
-		$(RM) $(LIBFT_AR)
-
 clean:
 		$(RM) $(OBJ_DIR)
 		@$(MAKE) clean -C $(LIBFT_DIR) -j
+
+fclean: clean
+		$(RM) $(NAME)
+		$(RM) $(LIBFT_AR)
 
 re:
 		@$(MAKE) fclean
 		@$(MAKE) all
 
+bonus:	$(BONUS)
+
 #RULES:
 $(NAME): $(OBJS) $(LIBFT_AR)
 		$(CC) $(CFLAGS) -o $@ $^
+
+$(BONUS): $(OBJS) $(BONUS_OBJS)
+		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $(BONUS_OBJS)
 
 $(LIBFT_AR):
 		@$(MAKE) -C $(LIBFT_DIR) -j
@@ -59,6 +75,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
 		@mkdir -p $(OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
+$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c $(INC_FILES)
+		@mkdir -p $(OBJ_DIR)
+		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
 #OTHER:
 .PHONY:
-		all clean fclean re
+		all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/17 13:52:20 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/07 15:47:16 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/09 09:57:15 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ void	ps_radix_sort(t_stack **stack_a)
 	}
 }
 
+int	is_sorted(t_stack *stack)
+{
+	if (!stack)
+		return (0);
+	while (stack->next)
+	{
+		if (stack->idx > stack->next->idx)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
 static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, unsigned int i)
 {
 	unsigned int	j;
@@ -56,19 +69,6 @@ static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, unsigned int i)
 			ops_switch(stack_a, stack_b, "rb");
 		j++;
 	}
-}
-
-int	is_sorted(t_stack *stack)
-{
-	if (!stack)
-		return (0);
-	while (stack->next)
-	{
-		if (stack->idx > stack->next->idx)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
 }
 
 static int	is_revsorted(t_stack *stack)

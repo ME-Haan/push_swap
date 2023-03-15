@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/07 15:51:57 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/15 18:24:07 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define PUSH_SWAP_H
 
 // Includes:
-# include <libft.h>
+# include "libft.h"
+# include "ft_printf.h"
+# include "get_next_line_bonus.h"
 # include <limits.h>
 # include <stdarg.h>
 # include <stdlib.h>

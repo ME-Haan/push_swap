@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 10:17:09 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/16 15:11:09 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/03/31 11:56:00 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ static int	check_valid_ops(char **ops);
 static int	checker(t_stack **stack_a, char **ops);
 static void	free_ops(char **ops);
 
-void	f(void)
-{
-	system("leaks checker_bonus");
-}
-
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	char	**ops;
 
-	atexit(f);
 	check_error(argc, argv);
 	stack_a = parse_arguments(argc, argv);
-	ops = ops_parser(0);
+	ops = ops_parser(STDIN_FILENO);
 	if (!stack_a || !ops || !check_valid_ops(ops))
 	{
 		write(STDERR_FILENO, "Error\n", 6);
@@ -66,29 +60,6 @@ static char	**ops_parser(int fd)
 	ops = ft_split(tmp, '\n');
 	return (free(tmp), ops);
 }
-// static char	**ops_parser(int fd)
-// {
-// 	char	*tmp;
-// 	char	**ops;
-// 	char	buff[100];
-// 	int		bytes_read;
-
-// 	bytes_read = 1;
-// 	tmp = NULL;
-// 	tmp = gnl_strjoin(tmp, "");
-// 	while (bytes_read)
-// 	{
-// 		bytes_read = read(fd, buff, 100);
-// 		if (bytes_read == -1)
-// 			return (free(tmp), NULL);
-// 		buff[bytes_read] = '\0';
-// 		tmp = gnl_strjoin(tmp, buff);
-// 		if (!tmp)
-// 			return (NULL);
-// 	}
-// 	ops = ft_split(tmp, '\n');
-// 	return (free(tmp), ops);
-// }
 
 static int	check_valid_ops(char **ops)
 {

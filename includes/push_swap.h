@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 13:57:24 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/15 18:24:07 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/04/01 17:32:44 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void			ps_radix_sort(t_stack **stack_a);
 int				is_sorted(t_stack *stack);
 
 // Operation functions:
-void			ops_switch(t_stack **stack_a, t_stack **stack_b, char *op);
+void			op_switch(t_stack **stk_a, t_stack **stk_b, char *op, int prnt);
 
 #endif

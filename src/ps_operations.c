@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/31 14:23:27 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/09 10:07:36 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/04/01 17:38:13 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static void	ps_push(t_stack **stack1, t_stack **stack2);
 static void	ps_rotate(t_stack **stack);
 static void	ps_rev_rotate(t_stack **stack);
 
-void	ops_switch(t_stack **stack_a, t_stack **stack_b, char *op)
+void	op_switch(t_stack **stk_a, t_stack **stk_b, char *op, int prnt)
 {
 	if (!ft_strncmp("sa", op, 3) || !ft_strncmp("ss", op, 3))
-		ps_swap(stack_a);
+		ps_swap(stk_a);
 	if (!ft_strncmp("sb", op, 3) || !ft_strncmp("ss", op, 3))
-		ps_swap(stack_b);
+		ps_swap(stk_b);
 	if (!ft_strncmp("pa", op, 3))
-		ps_push(stack_a, stack_b);
+		ps_push(stk_a, stk_b);
 	if (!ft_strncmp("pb", op, 3))
-		ps_push(stack_b, stack_a);
+		ps_push(stk_b, stk_a);
 	if (!ft_strncmp("ra", op, 3) || !ft_strncmp("rr", op, 3))
-		ps_rotate(stack_a);
+		ps_rotate(stk_a);
 	if (!ft_strncmp("rb", op, 3) || !ft_strncmp("rr", op, 3))
-		ps_rotate(stack_b);
+		ps_rotate(stk_b);
 	if (!ft_strncmp("rra", op, 4) || !ft_strncmp("rrr", op, 4))
-		ps_rev_rotate(stack_a);
+		ps_rev_rotate(stk_a);
 	if (!ft_strncmp("rrb", op, 4) || !ft_strncmp("rrr", op, 4))
-		ps_rev_rotate(stack_b);
-	write(1, op, ft_strlen(op));
-	write(1, "\n", 1);
+		ps_rev_rotate(stk_b);
+	if (prnt)
+		ft_printf("%s\n", op);
 }
 
 static void	ps_swap(t_stack **stack)

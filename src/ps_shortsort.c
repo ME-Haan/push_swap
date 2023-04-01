@@ -6,7 +6,7 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/06 16:01:05 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/07 16:01:28 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/04/01 17:34:16 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ps_short_sort(t_stack **stack_a)
 	if (!is_sorted(*stack_a) && ps_stacklen(*stack_a) <= 3)
 		sort_3_max(stack_a);
 	while (stack_b)
-		ops_switch(stack_a, &stack_b, "pa");
+		op_switch(stack_a, &stack_b, "pa", 1);
 }
 
 static void	push_lowest(t_stack **stack_a, t_stack **stack_b)
@@ -41,15 +41,15 @@ static void	push_lowest(t_stack **stack_a, t_stack **stack_b)
 	{
 		i = stack_a_len - idx_low;
 		while (i-- > 0)
-			ops_switch(stack_a, stack_b, "rra");
+			op_switch(stack_a, stack_b, "rra", 1);
 	}
 	else
 	{
 		i = idx_low;
 		while (i-- > 0)
-			ops_switch(stack_a, stack_b, "ra");
+			op_switch(stack_a, stack_b, "ra", 1);
 	}
-	ops_switch(stack_a, stack_b, "pb");
+	op_switch(stack_a, stack_b, "pb", 1);
 }
 
 static unsigned int	find_lowest_idx(t_stack *stack_a, t_stack *stack_b)
@@ -77,10 +77,10 @@ static void	sort_3_max(t_stack **stk)
 	{
 		last = ps_stacklast(*stk);
 		if ((*stk)->idx > (*stk)->next->idx && (*stk)->idx < last->idx)
-			ops_switch(stk, NULL, "sa");
+			op_switch(stk, NULL, "sa", 1);
 		else if ((*stk)->idx > (*stk)->next->idx && (*stk)->idx > last->idx)
-			ops_switch(stk, NULL, "ra");
+			op_switch(stk, NULL, "ra", 1);
 		else
-			ops_switch(stk, NULL, "rra");
+			op_switch(stk, NULL, "rra", 1);
 	}
 }

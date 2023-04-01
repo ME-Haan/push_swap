@@ -6,14 +6,14 @@
 /*   By: mhaan <mhaan@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 10:17:09 by mhaan         #+#    #+#                 */
-/*   Updated: 2023/03/31 11:56:00 by mhaan         ########   odam.nl         */
+/*   Updated: 2023/04/01 17:33:01 by mhaan         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"push_swap.h"
 
 static char	**ops_parser(int fd);
-static int	check_valid_ops(char **ops);
+static int	check_valid_op(char *op);
 static int	checker(t_stack **stack_a, char **ops);
 static void	free_ops(char **ops);
 
@@ -25,9 +25,9 @@ int	main(int argc, char *argv[])
 	check_error(argc, argv);
 	stack_a = parse_arguments(argc, argv);
 	ops = ops_parser(STDIN_FILENO);
-	if (!stack_a || !ops || !check_valid_ops(ops))
+	if (!stack_a || !ops)
 	{
-		write(STDERR_FILENO, "Error\n", 6);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 	if (checker(&stack_a, ops))
@@ -44,16 +44,19 @@ static char	**ops_parser(int fd)
 	char	*tmp;
 	char	*op;
 	char	**ops;
-	int		on;
 
-	on = 1;
 	tmp = NULL;
 	tmp = gnl_strjoin(tmp, "");
-	while (on)
+	while (1)
 	{
 		op = get_next_line(fd);
 		if (!op)
 			break ;
+		if (!check_valid_op(op))
+		{
+			ft_putstr_fd("Error\n", STDERR_FILENO);
+			exit(EXIT_FAILURE);
+		}
 		tmp = gnl_strjoin(tmp, op);
 		free(op);
 	}
@@ -61,29 +64,22 @@ static char	**ops_parser(int fd)
 	return (free(tmp), ops);
 }
 
-static int	check_valid_ops(char **ops)
+static int	check_valid_op(char *op)
 {
-	char	**tmp;
-
-	tmp = ops;
-	while (*ops)
-	{
-		if (!ft_strncmp("sa", *ops, 3) || !ft_strncmp("sb", *ops, 3))
-			ops++;
-		else if (!ft_strncmp("ss", *ops, 3))
-			ops++;
-		else if (!ft_strncmp("pa", *ops, 3) || !ft_strncmp("pb", *ops, 3))
-			ops++;
-		else if (!ft_strncmp("ra", *ops, 3) || !ft_strncmp("rb", *ops, 3))
-			ops++;
-		else if (!ft_strncmp("rra", *ops, 4) || !ft_strncmp("rrb", *ops, 4))
-			ops++;
-		else if (!ft_strncmp("rr", *ops, 3) || !ft_strncmp("rrr", *ops, 4))
-			ops++;
-		else
-			return (ops = tmp, 0);
-	}
-	return (ops = tmp, 1);
+	if (!ft_strncmp("sa\n", op, 3) || !ft_strncmp("sb\n", op, 3))
+		return (1);
+	else if (!ft_strncmp("ss\n", op, 3))
+		return (1);
+	else if (!ft_strncmp("pa\n", op, 3) || !ft_strncmp("pb\n", op, 3))
+		return (1);
+	else if (!ft_strncmp("ra\n", op, 3) || !ft_strncmp("rb\n", op, 3))
+		return (1);
+	else if (!ft_strncmp("rra\n", op, 4) || !ft_strncmp("rrb\n", op, 4))
+		return (1);
+	else if (!ft_strncmp("rr\n", op, 3) || !ft_strncmp("rrr\n", op, 4))
+		return (1);
+	else
+		return (0);
 }
 
 static int	checker(t_stack **stack_a, char **ops)
@@ -93,7 +89,7 @@ static int	checker(t_stack **stack_a, char **ops)
 	stack_b = NULL;
 	while (*ops)
 	{
-		ops_switch(stack_a, &stack_b, *ops);
+		op_switch(stack_a, &stack_b, *ops, 0);
 		ops++;
 	}
 	if (is_sorted(*stack_a) && !stack_b)

@@ -6,13 +6,13 @@
 #    By: mhaan <mhaan@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/30 16:06:53 by mhaan         #+#    #+#                  #
-#    Updated: 2023/03/16 15:22:29 by mhaan         ########   odam.nl          #
+#    Updated: 2023/04/01 16:15:28 by mhaan         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 #GENERAL VARIABLES
 NAME := push_swap
-BONUS := checker_bonus
+BONUS := checker
 RM := /bin/rm -rf
 
 #COMPILATION VARIABLES

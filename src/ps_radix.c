@@ -11,33 +11,41 @@
 /* ************************************************************************** */
 
 #include	"push_swap.h"
+#include	<stdio.h>
 
-static int	is_revsorted(t_stack *stack);
-static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, unsigned int i);
+static int		is_revsorted(t_stack *stack);
+static void		sort_stack_b(t_stack **stack_a, t_stack **stack_b, size_t i, size_t *stacklen_b);
 
 void	ps_radix_sort(t_stack **stack_a)
 {
 	t_stack			*stack_b;
-	unsigned int	stacklen;
+	const size_t	stacklen = ps_stacklen(*stack_a);
+	size_t			stacklen_a;
+	size_t			stacklen_b;
 	unsigned int	i;
 	unsigned int	j;
 
 	stack_b = NULL;
+	stacklen_a = stacklen;
+	stacklen_b = 0;
 	i = 0;
 	while (stack_b || !is_sorted(*stack_a))
 	{
 		j = 0;
-		stacklen = ps_stacklen(*stack_a);
-		while (j < stacklen && !is_sorted(*stack_a))
+		stacklen_a = stacklen - stacklen_b;
+		while (j < stacklen_a && !is_sorted(*stack_a))
 		{
 			if (((*stack_a)->idx >> i) & 1)
 				op_switch(stack_a, &stack_b, "ra", 1);
 			else
+			{
 				op_switch(stack_a, &stack_b, "pb", 1);
+				stacklen_b++;
+			}
 			j++;
 		}
 		i++;
-		sort_stack_b(stack_a, &stack_b, i);
+		sort_stack_b(stack_a, &stack_b, i, &stacklen_b);
 	}
 }
 
@@ -54,21 +62,25 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, unsigned int i)
+static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, size_t i, size_t *stacklen_b)
 {
 	unsigned int	j;
-	unsigned int	stacklen;
+	size_t			push_count;
 
 	j = 0;
-	stacklen = ps_stacklen(*stack_b);
-	while (stack_b && j < stacklen)
+	push_count = 0;
+	while (stack_b && j < *stacklen_b)
 	{
 		if ((*stack_b)->idx >> i & 1 || is_revsorted(*stack_b))
+		{
 			op_switch(stack_a, stack_b, "pa", 1);
+			push_count++;
+		}
 		else
 			op_switch(stack_a, stack_b, "rb", 1);
 		j++;
 	}
+	*stacklen_b -= push_count;
 }
 
 static int	is_revsorted(t_stack *stack)

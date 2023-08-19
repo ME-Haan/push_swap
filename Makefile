@@ -23,6 +23,10 @@ ifdef OPTIM
 	CFLAGS += -Ofast -flto -march=native
 endif
 
+ifdef DEBUG
+	CFLAGS += -g
+endif
+
 AR := ar -crs
 
 #DIRS AND FILES
@@ -76,6 +80,13 @@ reoptim:
 	$(MAKE) fclean
 	$(MAKE) all OPTIM=1
 
+debug:
+	$(MAKE) all DEBUG=1
+	
+rebug:
+	$(MAKE) fclean
+	$(MAKE) all DEBUG=1
+
 bonus:	$(BONUS)
 
 #RULES:
@@ -94,4 +105,4 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
 
 #OTHER:
 .PHONY:
-	all clean fclean re bonus optim reoptim
+	all clean fclean re bonus optim reoptim debug rebug

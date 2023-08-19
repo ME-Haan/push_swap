@@ -22,7 +22,7 @@ int	check_error(int argc, char **argv)
 
 	i = 1;
 	if (argc < 2)
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	while (i < argc)
 	{
 		check_int(argv[i]);
@@ -30,7 +30,7 @@ int	check_error(int argc, char **argv)
 		i++;
 	}
 	if (argc == 2)
-		exit (EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -45,8 +45,9 @@ static int	check_int(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 		{
-			write(STDERR_FILENO, "Error\n", 6);
-			exit (EXIT_FAILURE);
+			if (write(STDERR_FILENO, "Error\n", 6) == -1)
+				exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
@@ -73,8 +74,9 @@ static int	check_limits(const char *str)
 		return (0);
 	else if (val < 0 || val > INT_MAX)
 	{
-		write(STDERR_FILENO, "Error\n", 6);
-		exit (EXIT_FAILURE);
+		if (write(STDERR_FILENO, "Error\n", 6) == -1)
+			exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
@@ -94,8 +96,9 @@ static int	check_dups(int argc, char *argv[], int i)
 			arg2 = ft_atoi(argv[j]);
 			if (arg1 == arg2)
 			{
-				write(STDERR_FILENO, "Error\n", 6);
-				exit (EXIT_FAILURE);
+				if (write(STDERR_FILENO, "Error\n", 6) == -1)
+					exit(EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 			}
 			j++;
 		}

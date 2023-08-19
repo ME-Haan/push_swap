@@ -12,11 +12,17 @@
 
 #GENERAL VARIABLES
 NAME := push_swap
-BONUS := checker
+BONUS := checker_bonus
 RM := /bin/rm -rf
+
 
 #COMPILATION VARIABLES
 CFLAGS ?= -Wall -Wextra -Werror
+
+ifdef OPTIM
+	CFLAGS += -Ofast -flto -march=native
+endif
+
 AR := ar -crs
 
 #DIRS AND FILES
@@ -51,34 +57,41 @@ LIBFT_AR := $(LIBFT_DIR)/libft_ext.a
 all:	$(NAME)
 
 clean:
-		@$(RM) $(OBJ_DIR)
-		@$(MAKE) clean -C $(LIBFT_DIR)
+	@$(RM) $(OBJ_DIR)
+	@$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean: clean
-		@$(RM) $(NAME)
-		@$(RM) $(BONUS)
-		@$(RM) $(LIBFT_AR)
+	@$(RM) $(NAME)
+	@$(RM) $(BONUS)
+	@$(RM) $(LIBFT_AR)
 
 re:
-		@$(MAKE) fclean
-		@$(MAKE) all
+	@$(MAKE) fclean
+	@$(MAKE) all
+
+optim:
+	$(MAKE) all OPTIM=1
+
+reoptim:
+	$(MAKE) fclean
+	$(MAKE) all OPTIM=1
 
 bonus:	$(BONUS)
 
 #RULES:
 $(NAME): $(OBJS) $(LIBFT_AR)
-		$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJS) $(LIBFT_AR)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(OBJS) $(LIBFT_AR)
 
 $(BONUS): $(BONUS_OBJS) $(LIBFT_AR)
-		$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 $(LIBFT_AR):
-		@$(MAKE) -C $(LIBFT_DIR) -j
+	@$(MAKE) -C $(LIBFT_DIR) -j
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
-		@mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 #OTHER:
 .PHONY:
-		all clean fclean re bonus
+	all clean fclean re bonus optim reoptim

@@ -20,7 +20,8 @@ int	main(int argc, char *argv[])
 	stack_a = parse_arguments(argc, argv);
 	if (!stack_a)
 	{
-		write(STDERR_FILENO, "Error\n", 6);
+		if (write(STDERR_FILENO, "Error\n", 6) == -1)
+			exit(EXIT_FAILURE);
 		exit(EXIT_FAILURE);
 	}
 	if (argc <= 6)

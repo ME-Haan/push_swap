@@ -13,40 +13,67 @@
 #include	"push_swap.h"
 #include	<stdio.h>
 
-static int		is_revsorted(t_stack *stack);
-static void		sort_stack_b(t_stack **stack_a, t_stack **stack_b, size_t i, size_t *stacklen_b);
+static int	is_revsorted(t_stack *stack);
+static void	sort_stack_b(t_stack **stack_a, t_stack **stack_b, size_t i, size_t *stacklen_b);
+static void	inner_loop(t_stack **stack_a, t_stack **stack_b, size_t stacklen);
 
 void	ps_radix_sort(t_stack **stack_a)
 {
 	t_stack			*stack_b;
 	const size_t	stacklen = ps_stacklen(*stack_a);
-	size_t			stacklen_a;
-	size_t			stacklen_b;
-	unsigned int	i;
-	unsigned int	j;
+	/* size_t			stacklen_a; */
+	/* size_t			stacklen_b; */
+	/* unsigned int	i; */
+	/* unsigned int	j; */
 
-	stack_b = NULL;
-	stacklen_a = stacklen;
-	stacklen_b = 0;
-	i = 0;
+	/* stack_b = NULL; */
+	/* stacklen_a = stacklen; */
+	/* stacklen_b = 0; */
+	/* i = 0; */
 	while (stack_b || !is_sorted(*stack_a))
 	{
-		j = 0;
-		stacklen_a = stacklen - stacklen_b;
-		while (j < stacklen_a && !is_sorted(*stack_a))
-		{
-			if (((*stack_a)->idx >> i) & 1)
-				op_switch(stack_a, &stack_b, "ra", 1);
-			else
-			{
-				op_switch(stack_a, &stack_b, "pb", 1);
-				stacklen_b++;
-			}
-			j++;
-		}
-		i++;
-		sort_stack_b(stack_a, &stack_b, i, &stacklen_b);
+		inner_loop(stack_a, &stack_b, stacklen);
+		/* j = 0; */
+		/* stacklen_a = stacklen - stacklen_b; */
+		/* while (j < stacklen_a && !is_sorted(*stack_a)) */
+		/* { */
+		/* 	if (((*stack_a)->idx >> i) & 1) */
+		/* 		op_switch(stack_a, &stack_b, "ra", 1); */
+		/* 	else */
+		/* 	{ */
+		/* 		op_switch(stack_a, &stack_b, "pb", 1); */
+		/* 		stacklen_b++; */
+		/* 	} */
+		/* 	j++; */
+		/* } */
+		/* i++; */
+		/* sort_stack_b(stack_a, &stack_b, i, &stacklen_b); */
 	}
+}
+
+static void	inner_loop(t_stack **stack_a, t_stack **stack_b, const size_t stacklen)
+{
+	static size_t	i;
+	size_t			j;
+	size_t			stacklen_a;
+	static size_t	stacklen_b;
+
+	i = 0;
+	j = 0;
+	stacklen_a = stacklen - stacklen_b;
+	while (j < stacklen_a && !is_sorted(*stack_a))
+	{
+		if (((*stack_a)->idx >> i) & 1)
+			op_switch(stack_a, stack_b, "ra", 1);
+		else
+		{
+			op_switch(stack_a, stack_b, "pb", 1);
+			stacklen_b++;
+		}
+		j++;
+	}
+	i++;
+	sort_stack_b(stack_a, stack_b, i, &stacklen_b);
 }
 
 int	is_sorted(t_stack *stack)
